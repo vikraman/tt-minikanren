@@ -1,5 +1,7 @@
 #lang racket
 
+(provide ⊢ run run*)
+
 (require "mk/mk.rkt")
 
 (define apply-Γ
