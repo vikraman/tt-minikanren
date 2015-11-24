@@ -1,3 +1,4 @@
 [submodule "mk"]
-	path = mk
-	url = https://github.com/webyrd/miniKanren-with-symbolic-constraints.git
+  path = mk
+  url = https://github.com/webyrd/miniKanren-with-symbolic-constraints.git
+  ignore = dirty
