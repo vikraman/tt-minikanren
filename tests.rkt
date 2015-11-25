@@ -10,13 +10,13 @@
            (begin
              (displayln msg)
              (check member τ (run* (q) (⊢ '() e q)) msg)
-             (check member e (run 100 (q) (⊢ '() q τ)) msg)))]
+             (check member e (run 5 (q) (⊢ '() q τ)) msg)))]
       [(inhabits e τ e′)
        #'(let ([msg (format "~a :: ~a" e τ)])
            (begin
              (displayln msg)
              (check member τ (run* (q) (⊢ '() e q)) msg)
-             (check member e′ (run 100 (q) (⊢ '() q τ)) msg)))])))
+             (check member e′ (run 5 (q) (⊢ '() q τ)) msg)))])))
 
 (define ⊢tests
   (test-suite
