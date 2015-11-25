@@ -38,11 +38,20 @@
    (inhabits '(cdr (cons ⊤ ⊤)) '⊤)
    (inhabits '(λ (x) (λ (y) (y x))) '(_.0 → ((_.0 → _.1) → _.1))
              '((λ (_.0) (λ (_.1) (_.1 _.0))) (=/= ((_.0 _.1))) (sym _.0 _.1)))
-   (inhabits '(λ (v)
-                (match v
-                  ((inl ac) (cons (inl (car ac)) (cdr ac)))
-                  ((inr bc) (cons (inr (car bc)) (cdr bc)))))
-             '(((_.0 × _.1) + (_.2 × _.1)) → ((_.0 + _.2) × _.1)))
+   (inhabits '(λ (v) (cons (match v
+                             ((inl ac) (inl (car ac)))
+                             ((inr bc) (inr (car bc))))
+                           (match v
+                             ((inl ac) (cdr ac))
+                             ((inr bc) (cdr bc)))))
+             '(((_.0 × _.1) + (_.2 × _.1)) → ((_.0 + _.2) × _.1))
+             '((λ (_.0) (cons (match _.0
+                                ((inl _.1) (inl (car _.1)))
+                                ((inr _.2) (inr (car _.2))))
+                              (match _.0
+                                ((inl _.3) (cdr _.3))
+                                ((inr _.4) (cdr _.4)))))
+               (sym _.0 _.1 _.2 _.3 _.4)))
    (inhabits '(λ (e)
                 (match e
                   ((inl ab) (match ab
