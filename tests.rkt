@@ -35,7 +35,21 @@
              '⊤)
    (inhabits '(cons ⊤ ⊤) '(⊤ × ⊤))
    (inhabits '(car (cons ⊤ ⊤)) '⊤)
-   (inhabits '(cdr (cons ⊤ ⊤)) '⊤)))
+   (inhabits '(cdr (cons ⊤ ⊤)) '⊤)
+   (inhabits '(λ (x) (λ (y) (y x))) '(_.0 → ((_.0 → _.1) → _.1))
+             '((λ (_.0) (λ (_.1) (_.1 _.0))) (=/= ((_.0 _.1))) (sym _.0 _.1)))
+   (inhabits '(λ (v)
+                (match v
+                  ((inl ac) (cons (inl (car ac)) (cdr ac)))
+                  ((inr bc) (cons (inr (car bc)) (cdr bc)))))
+             '(((_.0 × _.1) + (_.2 × _.1)) → ((_.0 + _.2) × _.1)))
+   (inhabits '(λ (e)
+                (match e
+                  ((inl ab) (match ab
+                              ((inl a) (inl a))
+                              ((inr b) (inr (inl b)))))
+                  ((inr c) (inr (inr c)))))
+             '(((_.0 + _.1) + _.2) → (_.0 + (_.1 + _.2))))))
 
 (require rackunit/text-ui)
 (run-tests ⊢tests)
